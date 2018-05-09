@@ -1,0 +1,7 @@
+node_modules
+*.log
+arquivos-apoio
+public/img
+public/img-futiba-club
+public/sass/
+public/font
