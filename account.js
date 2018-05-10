@@ -15,6 +15,7 @@ const init = connection =>{
   })
 
   app.post('/new-account',(req,res) =>{
+    console.log(req.body)
     res.render('new-account')
   })
   return app
