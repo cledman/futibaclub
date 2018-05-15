@@ -11,7 +11,7 @@ const init = connection =>{
   })
 
   app.get('/new-account', (req,res) =>{
-    res.render('new-account')
+    res.render('new-account', {error:false})
   })
 
   app.post('/new-account', async(req,res) =>{
@@ -21,10 +21,15 @@ const init = connection =>{
 
     if(rows.length===0) {
       //inserir
-      console.log('inserir')
-      res.render('new-account')      
+      const {name, email, passwd} = req.body //isso é destruction assignment. É do ES6. Ele joga pras variáveis o body e depois consegue dele puxar os campos, pois senão teria que ser req.body.name, req... etc
+      await connection.execute('insert into users (name, email, passwd) values(?,?,?)', [
+        name,
+        email,
+        passwd
+      ])
+      res.redirect('/')      
     }else{
-      console.log('deu erro')      
+         
       res.render('new-account', {
         error: 'Usuário já existente'
       })
