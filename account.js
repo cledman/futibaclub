@@ -14,9 +14,21 @@ const init = connection =>{
     res.render('new-account')
   })
 
-  app.post('/new-account',(req,res) =>{
-    console.log(req.body)
-    res.render('new-account')
+  app.post('/new-account', async(req,res) =>{
+   const [rows,fields] = await connection.execute('select * from users where email = ?',[req.body.email])//prepared statment é o lance dessa interrogação aí
+    
+   console.log(rows)
+
+    if(rows.length===0) {
+      //inserir
+      console.log('inserir')
+      res.render('new-account')      
+    }else{
+      console.log('deu erro')      
+      res.render('new-account', {
+        error: 'Usuário já existente'
+      })
+    }   
   })
   return app
 
