@@ -10,8 +10,40 @@ const init = connection =>{
     res.render('home')
   })
 
+  //seguir o vídeo em 01:26
+  app.get('/logout', (req,res) =>{
+    req.session.destroy( err =>{
+      res.redirect('/')
+    })
+  })
+
+  app.get('/login', (req,res) =>{
+    res.render('login', {error:false})
+  })
+
+
   app.get('/new-account', (req,res) =>{
     res.render('new-account', {error:false})
+  })
+
+  app.post('/login', async(req,res) => {
+    const [rows,fields] = await connection.execute('select * from users where email = ?',[req.body.email])//prepared statment é o lance dessa interrogação aí
+    if(rows.length===0) {
+      res.render('login',{error: 'Usuário e/ou senha inválidos.'})
+    }else{
+      if(rows[0].passwd===req.body.passwd){
+        const userDb = rows[0]
+        const user = {
+          id: userDb.id,
+          name: userDb.name,
+          role: userDb.role
+        }
+        req.session.user = user
+        res.redirect('/')
+      }else{
+        res.render('login', {error: 'Usuário e/ou senha inválidos'})
+      }
+    }
   })
 
   app.post('/new-account', async(req,res) =>{
@@ -21,11 +53,12 @@ const init = connection =>{
 
     if(rows.length===0) {
       //inserir
-      const {name, email, passwd} = req.body //isso é destruction assignment. É do ES6. Ele joga pras variáveis o body e depois consegue dele puxar os campos, pois senão teria que ser req.body.name, req... etc
-      await connection.execute('insert into users (name, email, passwd) values(?,?,?)', [
+      const {name, email, passwd} = req.body //isso é destruction assignment. É do ES6. ele extrai de dentro do BODY as variáveis informadas, pois senão teria que ser req.body.name, req... etc
+      await connection.execute('insert into users (name, email, passwd,role) values(?,?,?,?)', [
         name,
         email,
-        passwd
+        passwd,
+        'user'//pois a regra é padrão, então pode passar aqui mesmo. 
       ])
       res.redirect('/')      
     }else{
