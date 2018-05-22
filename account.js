@@ -10,7 +10,7 @@ const init = connection =>{
     res.render('home')
   })
 
-  //seguir o vídeo em 01:26
+
   app.get('/logout', (req,res) =>{
     req.session.destroy( err =>{
       res.redirect('/')
@@ -20,7 +20,6 @@ const init = connection =>{
   app.get('/login', (req,res) =>{
     res.render('login', {error:false})
   })
-
 
   app.get('/new-account', (req,res) =>{
     res.render('new-account', {error:false})

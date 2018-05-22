@@ -1,4 +1,4 @@
-//parei o vídeo em 01:46:00 em 19/05
+//parei o vídeo em 01:53:00 em 22/05
 const express = require('express')//aqui é um módulo
 const app = express()// aqui está instanciando esse módulo. É como se fosse um app desse módulo
 const mysql = require('mysql2/promise')
