@@ -1,4 +1,4 @@
-//parei o vídeo em 01:53:00 em 22/05
+//parei o vídeo em 02:14:00 em 23/05, mas a aula foi concluída. Conferindo agora as dúvidas dos alunos
 const express = require('express')//aqui é um módulo
 const app = express()// aqui está instanciando esse módulo. É como se fosse um app desse módulo
 const mysql = require('mysql2/promise')
