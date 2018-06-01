@@ -1,4 +1,4 @@
-//parei o vídeo em 02:14:00 em 23/05, mas a aula foi concluída. Conferindo agora as dúvidas dos alunos
+//parei o vídeo em 13:38:00 em 01/06, quando ele vai começar a cadastrar os grupos
 const express = require('express')//aqui é um módulo
 const app = express()// aqui está instanciando esse módulo. É como se fosse um app desse módulo
 const mysql = require('mysql2/promise')
@@ -6,6 +6,7 @@ const bodyParser= require('body-parser')
 const session = require('express-session')
 const account = require('./account')
 const admin = require('./admin')
+const groups = require('./groups')
 
 app.use(express.static('public'))//aqui é um middlewaare, onde tudo que for estático, apontará para public
 app.use(bodyParser.urlencoded({extended:true}))
@@ -35,6 +36,8 @@ const init = async() =>{
 
   app.use(account(connection) )
   app.use('/admin', admin(connection))
+  app.use('/groups', groups(connection))  
+
   app.listen(3000, err => {   
     console.log('Futiba Club server is running')
   })
