@@ -15,6 +15,17 @@ const init = connection =>{
             groups
         })
     })
+    app.post('/', async(req, res) =>{
+       const [insertedId, inseterdFields] = await connection.execute('insert into groups (name) values (?)',[
+            req.body.name
+        ])
+        await connection.execute('insert into groups_users (group_id, user_id, role) values (?,?,?)',[
+            insertedId.insertId,
+            req.session.user.id,
+            'owner'
+        ])
+        res.redirect('/groups')
+    })
     return app
 }
 

@@ -1,4 +1,4 @@
-//parei o vídeo em 13:38:00 em 01/06, quando ele vai começar a cadastrar os grupos
+//parei o vídeo em 21:00:00 em 04/06, quando ele vai começar explicar o left join
 const express = require('express')//aqui é um módulo
 const app = express()// aqui está instanciando esse módulo. É como se fosse um app desse módulo
 const mysql = require('mysql2/promise')

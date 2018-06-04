@@ -67,9 +67,9 @@
                     <tbody>
                         <% groups.forEach( group => { %>
                         <tr><!-- ESSE <  %  é um EJS-->
-                            <th scope="row"><%= game.id %></th>
-                            <td><%= game.team_a %> vs <%= game.team_b %></td>
-                            <td><a href="/admin/games/delete/<%= game.id %>">Excluir</a></td>
+                            <th scope="row"><%= group.id %></th>
+                            <td><%= group.name %></td>
+                            <td><a href="/admin/group/delete/<%= group.id %>">Excluir</a></td>
                         </tr>    
                         <% }) %>                    
                     </tbody>
