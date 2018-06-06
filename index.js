@@ -1,4 +1,4 @@
-//parei o vídeo em 28:00:00 em 04/06, quando ele vai começar explicar a "entrada no grupo"
+//parei o vídeo em 34:00:00 em 06/06, quando ele vai começar explicar a "as operações de cada grupo"
 const express = require('express')//aqui é um módulo
 const app = express()// aqui está instanciando esse módulo. É como se fosse um app desse módulo
 const mysql = require('mysql2/promise')

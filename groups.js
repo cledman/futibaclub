@@ -17,6 +17,23 @@ const init = connection =>{
             groups
         })
     })
+    app.get('/:id/join', async(req, res) =>{
+        const [rows, fields] = await connection.execute('select * from groups_users where user_id = ? and group_id = ?', [
+            req.session.user.id,
+            req.params.id //que é o id que vem da url do app.get ali de cima.
+        ])
+        if(rows.lenght>0){
+            res.redirect('/groups')
+        }else{
+            await connection.execute('insert into groups_users (group_id, user_id, role) values (?,?,?)',[
+                req.params.id,
+                req.session.user.id,
+                'pending'
+            ])  
+            res.redirect('/groups')          
+        }
+    })
+
     app.post('/', async(req, res) =>{
        const [insertedId, inseterdFields] = await connection.execute('insert into groups (name) values (?)',[
             req.body.name

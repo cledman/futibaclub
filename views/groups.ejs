@@ -69,14 +69,14 @@
                         <% groups.forEach( group => { %>
                         <tr><!-- ESSE <  %  é um EJS-->
                             <th scope="row"><%= group.id %></th>
-                            <td><%= group.name %></td>
+                            <td><a href="/groups/<%= group.id %>"><%= group.name %></a></td>
                             <td><%= group.role %></td>
                             <td>
                                 <% if(group.role ==='owner') { %>
                                 <a href="/admin/group/delete/<%= group.id %>">Excluir</a>
                                 <% } %>
                                 <% if(!group.role) { %>
-                                    <a href="/admin/group/delete/<%= group.id %>">Solicitar entrada</a>
+                                    <a href="/groups/<%= group.id %>/join">Solicitar entrada</a>
                                     <% } %>                                
                             </td>
                         </tr>    
