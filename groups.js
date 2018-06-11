@@ -17,6 +17,16 @@ const init = connection =>{
             groups
         })
     })
+
+    app.get('/:id', async(req, res) =>{
+        const [pendings] = await connection.execute('select groups_users.*, users.name from  groups_users inner join users on groups_users.user_id=users.id and groups_users.group_id=? and groups_users.role like "pending"', [
+            req.params.id
+        ])
+        res.render('group', {
+            pendings
+        })
+    })
+
     app.get('/:id/join', async(req, res) =>{
         const [rows, fields] = await connection.execute('select * from groups_users where user_id = ? and group_id = ?', [
             req.session.user.id,
