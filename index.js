@@ -1,4 +1,4 @@
-//parei o vídeo em 43:00:00 em 06/06, quando ele faz a alteração pra puxar o grupo. Ainda com erro.
+//parei o vídeo em 44:00:00 em 19/07, quando ele faz a alteração pra puxar o grupo. Erro corrigido(group.ejs onde pega o id do grupo), mas diferente do vídeo.
 const express = require('express')//aqui é um módulo
 const app = express()// aqui está instanciando esse módulo. É como se fosse um app desse módulo
 const mysql = require('mysql2/promise')

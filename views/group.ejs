@@ -69,11 +69,17 @@
                         <% pendings.forEach( user => { %>
                         <tr><!-- ESSE <  %  é um EJS-->
                             <th scope="row"><%= user.id %></th>
-                            <td><a href="/groups/<%= user.id %>"><%= user.name %></a></td>
+                            <td>
+                                <a href="/groups/<%= user.id %>">
+                                    <%= user.name %>
+                                </a>
+                            </td>
                             <td><%= user.role %></td>
                             <td>
-                                <!-- erro aqui no /group/-->
-                                <a href="/group/<%= group.id %>/<%= user.id %>">Excluir</a>
+                                    <a href="/group/<%= user.group_id %>/<%= user.id %>">
+                                        Excluir
+                                    </a>
+
                             </td>
                         </tr>    
                         <% }) %>                    
