@@ -10,11 +10,27 @@ const groups = require('./groups')
 
 app.use(express.static('public'))//aqui é um middlewaare, onde tudo que for estático, apontará para public
 app.use(bodyParser.urlencoded({extended:true}))
+
+
+/* deprecated
 app.use(session({
   secret:'fullstack-academy',
   resave:true,
   saveUnitialized:true
 }))
+*/
+
+app.use(session({
+  secret: 'fullstack-academy',
+  name: 'cookie_name',
+  proxy: true,
+  resave: true,
+  saveUninitialized: true
+}));
+
+
+
+
 app.set('view engine', 'ejs')
 
 const init = async() =>{
@@ -22,7 +38,7 @@ const init = async() =>{
         host:'127.0.0.1',
         user:'root',
         password:'',
-        database:'futiba-club'
+        database:'futibaclube'
     })
 
    app.use((req,res,next) =>{
